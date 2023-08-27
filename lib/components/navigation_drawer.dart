@@ -9,7 +9,6 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
-  bool toggle = false;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -42,15 +41,6 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
               textAlign: TextAlign.center,
             ),
-          ),ListTile(
-            // title: toggle? Icon(Icons.dark_mode):Icon(Icons.light_mode),
-            trailing: Switch(
-                onChanged: (bool? value){
-                  setState(() {
-                    toggle = !toggle;
-                  });
-                },
-                value: toggle),
           ),
           ListTile(
             leading: const Icon(Icons.home),

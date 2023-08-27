@@ -1,4 +1,3 @@
-import 'package:coco/components/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/components/navigation_drawer.dart';
 
@@ -8,22 +7,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    bool layout =  false;
     return Scaffold(
         appBar: AppBar(
           title: const Text("Home"),
         ),
         drawer: const NavDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                customCard(),
-                customCard(),
-              ],
-            ),
-          )
+        body: const Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text("Home"),
         ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () { },

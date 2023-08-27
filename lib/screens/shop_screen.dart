@@ -1,3 +1,4 @@
+import 'package:coco/screens/allShopScreenCollection/pet_shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/components/navigation_drawer.dart';
 
@@ -49,7 +50,7 @@ class ShopPage extends StatelessWidget {
         drawer: const NavDrawer(),
         body: const TabBarView(
             children: [
-              Text("data"),
+              PetShopScreen(),
               Text("122"),
               Text("5fsd")
             ]

@@ -1,9 +1,16 @@
 import 'package:coco/components/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
-class SettingsPage extends StatelessWidget {
+
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool toggle = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,18 +21,26 @@ class SettingsPage extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.miscellaneous_services),
-            title: const Text('General'),
-            subtitle: const Text('Look and feel of application....'),
-            onTap: (){
-              Navigator.popAndPushNamed(context, route.generalSettingsPage);
-            },
+            leading: toggle ? Icon(Icons.dark_mode) : Icon(Icons.light_mode),
+            title: Text("Dark Mode"),
+
+            subtitle: Text('Toggle between dark mode on and off....'),
+            trailing: Switch(
+                onChanged: (bool? value) {
+                  setState(() {
+                    toggle = !toggle;
+                  });
+                },
+                value: toggle),
           ),
           const Divider(height: 0),
-          const ListTile(
+          ListTile(
             leading: Icon(Icons.manage_accounts),
             title: Text('Accounts'),
             subtitle: Text('Change account details....'),
+            onTap: () {
+              Navigator.popAndPushNamed(context, route.generalSettingsPage);
+            },
           ),
           const Divider(height: 0),
           const ListTile(
