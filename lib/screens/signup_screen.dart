@@ -55,10 +55,10 @@ class _SignupPageState extends State<SignupPage> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
-                Colors.purple,
-                Color(0xff281537),
+                    Colors.purple,
+                    Colors.black87
               ])),
               child: const Padding(
                 padding: EdgeInsets.only(top: 60.0, left: 22),
@@ -98,7 +98,6 @@ class _SignupPageState extends State<SignupPage> {
                               "Name",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple,
                               ),
                             )),
                       ),
@@ -109,7 +108,6 @@ class _SignupPageState extends State<SignupPage> {
                               "Email",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple,
                               ),
                             )),
                       ),
@@ -122,7 +120,6 @@ class _SignupPageState extends State<SignupPage> {
                               "Password",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple,
                               ),
                             )),
                       ),
@@ -134,7 +131,6 @@ class _SignupPageState extends State<SignupPage> {
                               "Confirm Password",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple,
                               ),
                             )),
                       ),
@@ -158,11 +154,12 @@ class _SignupPageState extends State<SignupPage> {
                         onPressed: () {
                           Navigator.popAndPushNamed(context, route.loginPage);
                         },
-                        child: const Text(
+                        child: Text(
                           "Login",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.purple),
+                              color:
+                              Theme.of(context).colorScheme.primary),
                         ),
                       ),
                       const SizedBox(

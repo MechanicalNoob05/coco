@@ -29,10 +29,10 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
-                Colors.purple,
-                Color(0xff281537),
+                    Colors.purple,
+                    Colors.black87
               ])),
               child: const Padding(
                 padding: EdgeInsets.only(top: 60.0, left: 22),
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
@@ -66,27 +66,25 @@ class _LoginPageState extends State<LoginPage> {
                       const Spacer(),
                       TextFormField(
                         controller: _emailController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                             suffixIcon: Icon(Icons.email, color: Colors.grey),
                             label: Text(
                               "Email",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple,
                               ),
                             )),
                       ),
                       TextFormField(
                         obscureText: true,
                         controller: _passwordController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                             suffixIcon:
                                 Icon(Icons.visibility_off, color: Colors.grey),
                             label: Text(
                               "Password",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple,
                               ),
                             )),
                       ),
@@ -95,8 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const Align(
                         alignment: Alignment.center,
-                        child: Text("Forgot Password ?",
-                            style: TextStyle(color: Colors.black)),
+                        child: Text("Forgot Password ?",),
                       ),
                       const Spacer(),
                       FilledButton(
@@ -117,18 +114,17 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const Align(
                         alignment: Alignment.center,
-                        child: Text("Don't Have an account ?",
-                            style: TextStyle(color: Colors.black)),
+                        child: Text("Don't Have an account ?",),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.popAndPushNamed(context, route.signupPage);
                         },
-                        child: const Text(
+                        child: Text(
                           "Sign up",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.purple),
+                          ),
                         ),
                       ),const SizedBox(
                         height: 20,

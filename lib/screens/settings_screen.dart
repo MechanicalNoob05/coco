@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
             title: Text('Accounts'),
             subtitle: Text('Change account details....'),
             onTap: () {
-              Navigator.popAndPushNamed(context, route.generalSettingsPage);
+              Navigator.popAndPushNamed(context, route.accountSettingsPage);
             },
           ),
           const Divider(height: 0),

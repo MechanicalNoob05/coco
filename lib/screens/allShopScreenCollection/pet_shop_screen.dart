@@ -1,4 +1,5 @@
 import 'package:coco/components/custom_card.dart';
+import 'package:coco/models/Args.dart';
 import 'package:flutter/material.dart';
 class PetShopScreen extends StatelessWidget {
   const PetShopScreen({super.key});
@@ -7,18 +8,14 @@ class PetShopScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                customCard(),
-                customCard(),
-                customCard(),
-                customCard(),
-                customCard(),
-                customCard(),
-              ],
-            ),
+          padding: EdgeInsets.all(10.0),
+          child: ListView(
+            children: dummyProducts.map((e) {
+              return CustomCard(
+                name: e['name'],
+                price: e['price'],
+              );
+            }).toList(),
           )
       ),
     );

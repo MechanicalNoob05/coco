@@ -1,22 +1,17 @@
 import 'package:coco/screens/allShopScreenCollection/single_product_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:coco/router/router.dart' as route;
-class customCard extends StatefulWidget {
-  const customCard({super.key});
+class CustomCard extends StatelessWidget {
+  final String name;
+  final int price;
+  const CustomCard({super.key,required this.name,required this.price});
 
-  @override
-  State<customCard> createState() => _customCardState();
-}
-
-class _customCardState extends State<customCard> {
   @override
   Widget build(BuildContext context) {
-    int arg = 1;
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context)=>SingleProduct(Name: "hehe")
+                builder: (context)=>SingleProduct(name: name)
             )
         );
       },
@@ -42,18 +37,18 @@ class _customCardState extends State<customCard> {
             ),
             Padding(
               padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-              child: const Row(
+              child: Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Name",
-                        style: TextStyle(
+                      Text(name,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text("Price",
+                      Text("Rs. ${price.toString()}",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.normal,

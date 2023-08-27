@@ -1,6 +1,6 @@
 import 'package:coco/screens/allSettingsScreenCollection/account_setting_screen.dart';
-import 'package:coco/screens/allShopScreenCollection/single_product_screen.dart';
 import 'package:coco/screens/home_screen.dart';
+import 'package:coco/screens/introduction_animation/introduction_animation_screen.dart';
 import 'package:coco/screens/login_screen.dart';
 import 'package:coco/screens/settings_screen.dart';
 import 'package:coco/screens/shop_screen.dart';
@@ -13,8 +13,10 @@ const String homePage = 'home';
 const String shopPage = "shop";
 
 const String settingsPage = "settings";
+const String accountSettingsPage = "accountSettings";
 
-const String generalSettingsPage = "generalSettings";
+
+const String Onboarding = "onboarding";
 
 Route<dynamic> generalController(RouteSettings settings){
   switch (settings.name){
@@ -29,8 +31,10 @@ Route<dynamic> generalController(RouteSettings settings){
     case settingsPage:
       return MaterialPageRoute(builder: (context) => const SettingsPage());
       // Pages in settings
-    case generalSettingsPage:
+    case accountSettingsPage:
       return MaterialPageRoute(builder: (context) => const AccountSettingsPage());
+    case Onboarding:
+      return MaterialPageRoute(builder: (context) => const IntroductionAnimationScreen());
       // Default response
     default:
       throw("Route non existing");
