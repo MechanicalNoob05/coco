@@ -1,3 +1,5 @@
+import 'package:coco/themes/dark_theme.dart';
+import 'package:coco/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
 
@@ -13,8 +15,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool onboard = false;
-  bool auth = false;
+  bool onboard = true;
+  bool auth = true;
 
   // This widget is the root of your application.
   @override
@@ -22,10 +24,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Coco',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      darkTheme: darkTheme,
+      theme: lightTheme,
       onGenerateRoute: route.generalController,
       initialRoute: onboard ? auth ?  route.homePage:route.loginPage : route.Onboarding,
     );

@@ -75,7 +75,7 @@ class CenterNextButton extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                         8 + 32 * (1 - signUpMoveAnimation.value)),
-                    color: const Color(0xff132137),
+                    color: Colors.purple,
                   ),
                   child: PageTransitionSwitcher(
                     duration: const Duration(milliseconds: 480),
@@ -155,7 +155,7 @@ class CenterNextButton extends StatelessWidget {
                     child: const Text(
                       'Login',
                       style: TextStyle(
-                        color: Color(0xff132137),
+                        color: Colors.purple,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),

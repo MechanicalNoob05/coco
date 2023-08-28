@@ -10,7 +10,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool toggle = false;
+  bool systemTheme = false;
+  bool darkSwitch = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,23 +22,41 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: [
           ListTile(
-            leading: toggle ? Icon(Icons.dark_mode) : Icon(Icons.light_mode),
-            title: Text("Dark Mode"),
-
-            subtitle: Text('Toggle between dark mode on and off....'),
+            leading: const Icon(Icons.settings),
+            title: const Text("Use System Theme"),
+            subtitle: const Text('The theme is according to system setting....'),
             trailing: Switch(
                 onChanged: (bool? value) {
                   setState(() {
-                    toggle = !toggle;
+                    systemTheme = !systemTheme;
                   });
                 },
-                value: toggle),
+                value: systemTheme),
+          ),
+          Visibility(
+            visible: systemTheme,
+              child: const Divider(height: 0)
+          ),
+          Visibility(
+            visible: systemTheme,
+            child: ListTile(
+              leading: darkSwitch ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode),
+              title: const Text("Dark Mode"),
+              subtitle: const Text('Toggle between dark mode on and off....'),
+              trailing: Switch(
+                  onChanged: (bool? value) {
+                    setState(() {
+                      darkSwitch = !darkSwitch;
+                    });
+                  },
+                  value: darkSwitch),
+            ),
           ),
           const Divider(height: 0),
           ListTile(
-            leading: Icon(Icons.manage_accounts),
-            title: Text('Accounts'),
-            subtitle: Text('Change account details....'),
+            leading: const Icon(Icons.manage_accounts),
+            title: const Text('Accounts'),
+            subtitle: const Text('Change account details....'),
             onTap: () {
               Navigator.popAndPushNamed(context, route.accountSettingsPage);
             },

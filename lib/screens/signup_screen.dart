@@ -77,8 +77,8 @@ class _SignupPageState extends State<SignupPage> {
               child: Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -148,7 +148,7 @@ class _SignupPageState extends State<SignupPage> {
                       const Align(
                         alignment: Alignment.center,
                         child: Text("Already Have an account ?",
-                            style: TextStyle(color: Colors.black)),
+                            style: TextStyle()),
                       ),
                       TextButton(
                         onPressed: () {
