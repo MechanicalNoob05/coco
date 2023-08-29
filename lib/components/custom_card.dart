@@ -2,8 +2,9 @@ import 'package:coco/screens/allShopScreenCollection/single_product_screen.dart'
 import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   final String name;
+  final String url;
   final int price;
-  const CustomCard({super.key,required this.name,required this.price});
+  const CustomCard({super.key,required this.name,required this.price ,required this.url});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,8 @@ class CustomCard extends StatelessWidget {
             Stack(
               children: [
                 Ink.image(
-                  image: const NetworkImage(
-                    // 'https://i.pinimg.com/564x/2d/3f/cb/2d3fcb6ea71ba4e30ec95e94d8103068.jpg',
-                    "https://picsum.photos/1600/1000",
-                    //   "https://docs.flutter.dev/assets/images/dash/dash-fainting.gif"
+                  image: NetworkImage(
+                    url
                   ),
                   height: 240,
                   fit: BoxFit.cover,
@@ -39,23 +38,27 @@ class CustomCard extends StatelessWidget {
               padding: const EdgeInsets.all(16).copyWith(bottom: 0),
               child: Row(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(name,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
                         ),
-                      ),
-                      Text("Rs. ${price.toString()}",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.grey
+                        Text("Rs. ${price.toString()}",
+                          style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   )
                 ],
               ),

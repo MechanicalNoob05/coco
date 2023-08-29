@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(colors: [
                     Colors.purple,
                     Colors.black87
@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                       const Spacer(),
                       TextFormField(
                         controller: _emailController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             suffixIcon: Icon(Icons.email, color: Colors.grey),
                             label: Text(
                               "Email",
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                         obscureText: true,
                         controller: _passwordController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             suffixIcon:
                                 Icon(Icons.visibility_off, color: Colors.grey),
                             label: Text(
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           Navigator.popAndPushNamed(context, route.signupPage);
                         },
-                        child: Text(
+                        child: const Text(
                           "Sign up",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,

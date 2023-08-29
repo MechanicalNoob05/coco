@@ -1,11 +1,25 @@
+import 'package:coco/provider/photos_provider.dart';
 import 'package:coco/screens/allShopScreenCollection/pet_shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/components/navigation_drawer.dart';
+import 'package:provider/provider.dart';
 
 
-class ShopPage extends StatelessWidget {
+class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
 
+  @override
+  State<ShopPage> createState() => _ShopPageState();
+}
+
+class _ShopPageState extends State<ShopPage> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<PhotoProvider>(context, listen: false).getAllPhotos();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

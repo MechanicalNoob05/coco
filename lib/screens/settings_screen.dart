@@ -10,7 +10,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool systemTheme = false;
+  bool systemTheme = true;
   bool darkSwitch = false;
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: const Divider(height: 0)
           ),
           Visibility(
-            visible: systemTheme,
+            visible: !systemTheme,
             child: ListTile(
               leading: darkSwitch ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode),
               title: const Text("Dark Mode"),
