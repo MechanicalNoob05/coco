@@ -3,7 +3,7 @@ import 'package:coco/services/photo_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class PhotoProvider extends ChangeNotifier {
-  PhotoService _service = PhotoService();
+  final PhotoService _service = PhotoService();
   List<Photos> _photo = [];
   List<Photos> get photos => _photo;
   bool gotList = false;

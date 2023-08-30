@@ -13,6 +13,7 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -30,9 +31,9 @@ class _ShopPageState extends State<ShopPage> {
           title: const Text("Shop"),
           actions: [
             IconButton(
-                onPressed: (){
-                },
-                icon: const Icon(Icons.shopping_cart)
+              onPressed: (){
+              },
+              icon: const Icon(Icons.shopping_cart)
             )
           ],
           bottom: const TabBar(
@@ -63,11 +64,11 @@ class _ShopPageState extends State<ShopPage> {
         ),
         drawer: const NavDrawer(),
         body: const TabBarView(
-            children: [
-              PetShopScreen(),
-              Text("122"),
-              Text("5fsd")
-            ]
+          children: [
+            PetShopScreen(),
+            Text("122"),
+            Text("5fsd")
+          ]
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () { },
