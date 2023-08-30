@@ -1,6 +1,8 @@
 import 'package:coco/components/navigation_drawer.dart';
+import 'package:coco/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -10,10 +12,11 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool systemTheme = true;
-  bool darkSwitch = false;
+
+
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
@@ -27,29 +30,25 @@ class _SettingsPageState extends State<SettingsPage> {
             subtitle: const Text('The theme is according to system setting....'),
             trailing: Switch(
                 onChanged: (bool? value) {
-                  setState(() {
-                    systemTheme = !systemTheme;
-                  });
+                  provider.toggleFollowSystem();
                 },
-                value: systemTheme),
+                value: provider.followsystem),
           ),
           Visibility(
-            visible: systemTheme,
+            visible: provider.followsystem,
               child: const Divider(height: 0)
           ),
           Visibility(
-            visible: !systemTheme,
+            visible: !provider.followsystem,
             child: ListTile(
-              leading: darkSwitch ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode),
+              leading: provider.darkmodeon ? const Icon(Icons.dark_mode) : const Icon(Icons.light_mode),
               title: const Text("Dark Mode"),
               subtitle: const Text('Toggle between dark mode on and off....'),
               trailing: Switch(
                   onChanged: (bool? value) {
-                    setState(() {
-                      darkSwitch = !darkSwitch;
-                    });
+                    provider.toggleTheme();
                   },
-                  value: darkSwitch),
+                  value: provider.darkmodeon),
             ),
           ),
           const Divider(height: 0),
