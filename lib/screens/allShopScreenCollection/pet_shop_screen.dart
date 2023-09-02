@@ -1,5 +1,5 @@
 import 'package:coco/components/custom_card.dart';
-import 'package:coco/provider/photos_provider.dart';
+import 'package:coco/provider/shoplist_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +16,9 @@ class _PetShopScreenState extends State<PetShopScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Consumer<PhotoProvider>(
+    return Scaffold(body: Consumer<ShopListProvider>(
       builder: (context, value, child) {
-        final photos = value.photos;
+        final photos = value.shoplist;
         final bool isLoading = value.isLoading;
         return isLoading
             ? const Center(
@@ -39,7 +39,7 @@ class _PetShopScreenState extends State<PetShopScreen> {
                 ],
               ))
             : ListView.builder(
-                itemCount: value.photos.length,
+                itemCount: value.shoplist.length,
                 itemBuilder: (context, index) {
                   final photo = photos[index];
                   return CustomCard(details: photo);

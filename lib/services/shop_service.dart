@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:coco/models/shopitem_model.dart';
 import 'package:http/http.dart' as http;
-class PhotoService{
+class ShopListService{
   Future<List<ShopItems>> getAll() async{
     const url = 'https://coco-backend-cr4j.onrender.com/api/shop';
     final uri = Uri.parse(url);

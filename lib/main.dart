@@ -4,7 +4,7 @@ import 'package:coco/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
 import 'package:provider/provider.dart';
-import 'package:coco/provider/photos_provider.dart';
+import 'package:coco/provider/shoplist_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<PhotoProvider>(create: (context) => PhotoProvider()),
+        ChangeNotifierProvider<ShopListProvider>(create: (context) => ShopListProvider()),
         ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider())
       ],
       builder: (context, child){

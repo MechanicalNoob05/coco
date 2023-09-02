@@ -1,4 +1,4 @@
-import 'package:coco/provider/photos_provider.dart';
+import 'package:coco/provider/shoplist_provider.dart';
 import 'package:coco/screens/allShopScreenCollection/pet_shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/components/navigation_drawer.dart';
@@ -18,7 +18,7 @@ class _ShopPageState extends State<ShopPage> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<PhotoProvider>(context, listen: false).getAllPhotos();
+      Provider.of<ShopListProvider>(context, listen: false).getAllShopItems();
     });
   }
   @override
