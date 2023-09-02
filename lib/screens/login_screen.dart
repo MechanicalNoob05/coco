@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -99,13 +100,13 @@ class _LoginPageState extends State<LoginPage> {
                       FilledButton(
                         style: FilledButton.styleFrom(
                             minimumSize: const Size(400, 50)),
-                        onPressed: () {
-                          Navigator.popAndPushNamed(context,
-                              route.homePage,
-                              // arguments: {'name':"John"}
-
+                        onPressed: () async {
+                          var sharedpref = await SharedPreferences.getInstance();
+                          sharedpref.setBool("Login", true);
+                          Navigator.pushReplacementNamed(context,
+                            route.homePage,
+                            // arguments: {'name':"John"}
                           );
-
                         },
                         child: const Text("Login"),
                       ),

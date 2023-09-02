@@ -1,13 +1,19 @@
-class Photos {
+class ShopItems {
   final int id;
-  final int albumId;
-  final String title;
+  final int price;
+  final String pet;
+  final String type;
+  final String name;
   final String url;
   final bool available;
-  Photos(
+  final String desc;
+  ShopItems(
       {required this.id,
-      required this.title,
+      required this.pet,
       required this.url,
       required this.available,
-      required this.albumId});
+        required this.type,
+        required this.desc,
+        required this.name,
+      required this.price});
 }

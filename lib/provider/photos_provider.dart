@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 
 class PhotoProvider extends ChangeNotifier {
   final PhotoService _service = PhotoService();
-  List<Photos> _photo = [];
-  List<Photos> get photos => _photo;
+  List<ShopItems> _photo = [];
+  List<ShopItems> get photos => _photo;
   bool gotList = false;
   bool isLoading = false;
 

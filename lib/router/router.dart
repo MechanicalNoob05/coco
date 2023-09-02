@@ -1,10 +1,10 @@
 import 'package:coco/screens/allSettingsScreenCollection/account_setting_screen.dart';
 import 'package:coco/screens/home_screen.dart';
-import 'package:coco/screens/introduction_animation/introduction_animation_screen.dart';
 import 'package:coco/screens/login_screen.dart';
 import 'package:coco/screens/settings_screen.dart';
 import 'package:coco/screens/shop_screen.dart';
 import 'package:coco/screens/signup_screen.dart';
+import 'package:coco/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 const String loginPage = 'login';
@@ -16,7 +16,7 @@ const String settingsPage = "settings";
 const String accountSettingsPage = "accountSettings";
 
 
-const String Onboarding = "onboarding";
+const String Splash = "splash";
 
 
 Route<dynamic> generalController(RouteSettings settings){
@@ -34,8 +34,8 @@ Route<dynamic> generalController(RouteSettings settings){
       // Pages in settings
     case accountSettingsPage:
       return MaterialPageRoute(builder: (context) => const AccountSettingsPage());
-    case Onboarding:
-      return MaterialPageRoute(builder: (context) => const IntroductionAnimationScreen());
+    case Splash:
+      return MaterialPageRoute(builder: (context) => const SplashScreen());
       // Default response
     default:
       throw("Route non existing");

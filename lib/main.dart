@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
 import 'package:provider/provider.dart';
 import 'package:coco/provider/photos_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() {
@@ -20,10 +21,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  bool onboard = true;
   bool auth = true;
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -39,9 +40,12 @@ class _MyAppState extends State<MyApp> {
           darkTheme: provider.followsystem ? darkTheme : provider.theme,
           theme: provider.followsystem ? lightTheme : provider.theme,
           onGenerateRoute: route.generalController,
-          initialRoute: onboard ? auth ?  route.homePage:route.loginPage : route.Onboarding,
+          initialRoute: route.Splash,
         );
       }
     );
   }
 }
+
+
+
