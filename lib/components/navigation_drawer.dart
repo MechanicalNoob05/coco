@@ -1,3 +1,5 @@
+import 'package:coco/screens/trial%20pages/ajit_trial_screen.dart';
+import 'package:coco/screens/trial%20pages/samarth_trial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
 
@@ -63,6 +65,28 @@ class _NavDrawerState extends State<NavDrawer> {
           const ListTile(
             leading: Icon(Icons.group),
             title: Text("Services"),
+          ),
+          ListTile(
+            leading: const Icon(Icons.downloading),
+            title: const Text("Samarth"),
+            onTap: (){
+              Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context)=>const SamarthTrialPage()
+                  )
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.downloading),
+            title: const Text("Ajit"),
+            onTap: (){
+              Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context)=>const AjitTrialPage()
+                  )
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings),

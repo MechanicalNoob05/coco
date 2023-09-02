@@ -18,6 +18,7 @@ const String accountSettingsPage = "accountSettings";
 
 const String Onboarding = "onboarding";
 
+
 Route<dynamic> generalController(RouteSettings settings){
   switch (settings.name){
     case loginPage:
