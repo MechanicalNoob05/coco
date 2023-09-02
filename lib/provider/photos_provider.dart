@@ -1,5 +1,5 @@
-import 'package:coco/models/photos_model.dart';
-import 'package:coco/services/photo_service.dart';
+import 'package:coco/models/shopitem_model.dart';
+import 'package:coco/services/shop_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class PhotoProvider extends ChangeNotifier {
