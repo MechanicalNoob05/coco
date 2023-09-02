@@ -42,8 +42,7 @@ class _PetShopScreenState extends State<PetShopScreen> {
                 itemCount: value.photos.length,
                 itemBuilder: (context, index) {
                   final photo = photos[index];
-                  return CustomCard(
-                      name: photo.name, price: photo.price, url: photo.url);
+                  return CustomCard(details: photo);
                 });
       },
     ));

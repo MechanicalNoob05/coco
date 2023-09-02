@@ -1,11 +1,10 @@
+import 'package:coco/models/shopitem_model.dart';
 import 'package:coco/screens/allShopScreenCollection/single_product_screen.dart';
 import 'package:coco/screens/miscpages/payment_gateway.dart';
 import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
-  final String name;
-  final String url;
-  final int price;
-  const CustomCard({super.key,required this.name,required this.price ,required this.url});
+  final ShopItems details;
+  const CustomCard({super.key,required this.details});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class CustomCard extends StatelessWidget {
       onTap: (){
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context)=>SingleProduct(name: name)
+            builder: (context)=>SingleProduct(name: details.name)
           )
         );
       },
@@ -28,7 +27,7 @@ class CustomCard extends StatelessWidget {
               children: [
                 Ink.image(
                   image: NetworkImage(
-                    url
+                    details.url
                   ),
                   height: 240,
                   fit: BoxFit.cover,
@@ -43,7 +42,7 @@ class CustomCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(name,
+                        Text(details.name,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -51,7 +50,7 @@ class CustomCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           softWrap: true,
                         ),
-                        Text("Rs. ${price.toString()}",
+                        Text("Rs. ${details.price.toString()}",
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.normal,
