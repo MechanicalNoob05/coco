@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         drawer: const NavDrawer(),
         body: const Padding(
           padding: EdgeInsets.all(10.0),
-          child: Text("Home"),
+          child: Center(child: Text("Home")),
         ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () { },
