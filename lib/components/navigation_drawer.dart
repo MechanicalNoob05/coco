@@ -2,6 +2,7 @@ import 'package:coco/screens/trial%20pages/ajit_trial_screen.dart';
 import 'package:coco/screens/trial%20pages/samarth_trial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NavDrawer extends StatefulWidget {
   const NavDrawer({super.key});
@@ -107,8 +108,10 @@ class _NavDrawerState extends State<NavDrawer> {
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text("Logout"),
-            onTap: () {
-              Navigator.popAndPushNamed(context, route.loginPage);
+            onTap: () async{
+              var sharedpref = await SharedPreferences.getInstance();
+              sharedpref.setBool("Login", false);
+              Navigator.pushReplacementNamed(context, route.loginPage);
             },
           )
 
