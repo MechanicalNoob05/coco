@@ -1,4 +1,5 @@
 import 'package:coco/screens/allShopScreenCollection/single_product_screen.dart';
+import 'package:coco/screens/miscpages/payment_gateway.dart';
 import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   final String name;
@@ -11,9 +12,9 @@ class CustomCard extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context)=>SingleProduct(name: name)
-            )
+          MaterialPageRoute(
+            builder: (context)=>SingleProduct(name: name)
+          )
         );
       },
       child: Card(
@@ -52,9 +53,9 @@ class CustomCard extends StatelessWidget {
                         ),
                         Text("Rs. ${price.toString()}",
                           style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.grey
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey
                           ),
                         ),
                       ],
@@ -72,7 +73,14 @@ class CustomCard extends StatelessWidget {
                 ),
                 TextButton(
                   child: const Text('Buy Now!'),
-                  onPressed: () {},
+                  onPressed: () {
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context)=> const PaymentGateway(),
+                      )
+                    );
+                  },
                 )
               ],
             )
