@@ -2,12 +2,16 @@ import 'package:coco/models/shopitem_model.dart';
 import 'package:coco/screens/allShopScreenCollection/single_product_screen.dart';
 import 'package:coco/screens/miscpages/payment_gateway.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/shoplist_provider.dart';
 class CustomCard extends StatelessWidget {
   final ShopItems details;
   const CustomCard({super.key,required this.details});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LikeProvider>(context);
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(
@@ -68,7 +72,9 @@ class CustomCard extends StatelessWidget {
               children: [
                 TextButton(
                   child: const Text('Add to cart'),
-                  onPressed: () {},
+                  onPressed: () {
+                    provider.toggleLike(details.id);
+                  },
                 ),
                 TextButton(
                   child: const Text('Buy Now!'),

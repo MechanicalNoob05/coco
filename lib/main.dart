@@ -31,6 +31,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<ShopFoodListProvider>(create: (context) => ShopFoodListProvider()),
         ChangeNotifierProvider<ShopAcessoriesListProvider>(create: (context) => ShopAcessoriesListProvider()),
         ChangeNotifierProvider<ShopMedicineListProvider>(create: (context) => ShopMedicineListProvider()),
+        ChangeNotifierProvider<LikeProvider>(create: (context) => LikeProvider()),
         ChangeNotifierProvider<AllShopListProvider>(create: (context) => AllShopListProvider()),
         ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider())
       ],

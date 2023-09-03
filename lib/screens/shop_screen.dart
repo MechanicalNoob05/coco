@@ -1,8 +1,9 @@
 import 'package:coco/provider/shoplist_provider.dart';
+import 'package:coco/screens/allShopScreenCollection/cart_screen.dart';
 import 'package:coco/screens/allShopScreenCollection/pet_acessories_screen.dart';
 import 'package:coco/screens/allShopScreenCollection/pet_medicine_screen.dart';
 import 'package:coco/screens/allShopScreenCollection/pet_shop_screen.dart';
-import 'package:coco/screens/miscpages/search_screen.dart';
+import 'package:coco/screens/allShopScreenCollection/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/components/navigation_drawer.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,11 @@ class _ShopPageState extends State<ShopPage> {
           actions: [
             IconButton(
               onPressed: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context)=>const CartScreen()
+                    )
+                );
               },
               icon: const Icon(Icons.shopping_cart)
             )

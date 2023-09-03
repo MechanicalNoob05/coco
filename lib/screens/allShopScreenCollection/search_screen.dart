@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/shopitem_model.dart';
-import '../allShopScreenCollection/single_product_screen.dart';
+import 'single_product_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
