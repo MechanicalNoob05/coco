@@ -73,7 +73,7 @@ class CustomCard extends StatelessWidget {
                 TextButton(
                   child: const Text('Add to cart'),
                   onPressed: () {
-                    provider.toggleLike(details.id);
+                    provider.toggleLike(details.name);
                   },
                 ),
                 TextButton(
