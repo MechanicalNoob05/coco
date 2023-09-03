@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
 import 'package:provider/provider.dart';
 import 'package:coco/provider/shoplist_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() {
@@ -32,6 +31,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<ShopFoodListProvider>(create: (context) => ShopFoodListProvider()),
         ChangeNotifierProvider<ShopAcessoriesListProvider>(create: (context) => ShopAcessoriesListProvider()),
         ChangeNotifierProvider<ShopMedicineListProvider>(create: (context) => ShopMedicineListProvider()),
+        ChangeNotifierProvider<AllShopListProvider>(create: (context) => AllShopListProvider()),
         ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider())
       ],
       builder: (context, child){
