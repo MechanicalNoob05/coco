@@ -29,7 +29,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ShopListProvider>(create: (context) => ShopListProvider()),
+        ChangeNotifierProvider<ShopFoodListProvider>(create: (context) => ShopFoodListProvider()),
+        ChangeNotifierProvider<ShopAcessoriesListProvider>(create: (context) => ShopAcessoriesListProvider()),
+        ChangeNotifierProvider<ShopMedicineListProvider>(create: (context) => ShopMedicineListProvider()),
         ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider())
       ],
       builder: (context, child){

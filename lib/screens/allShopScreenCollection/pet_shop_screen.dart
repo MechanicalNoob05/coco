@@ -16,7 +16,7 @@ class _PetShopScreenState extends State<PetShopScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Consumer<ShopListProvider>(
+    return Scaffold(body: Consumer<ShopFoodListProvider>(
       builder: (context, value, child) {
         final photos = value.shoplist;
         final bool isLoading = value.isLoading;

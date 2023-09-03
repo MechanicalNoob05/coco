@@ -1,4 +1,6 @@
 import 'package:coco/provider/shoplist_provider.dart';
+import 'package:coco/screens/allShopScreenCollection/pet_acessories_screen.dart';
+import 'package:coco/screens/allShopScreenCollection/pet_medicine_screen.dart';
 import 'package:coco/screens/allShopScreenCollection/pet_shop_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coco/components/navigation_drawer.dart';
@@ -18,7 +20,11 @@ class _ShopPageState extends State<ShopPage> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<ShopListProvider>(context, listen: false).getAllShopItems();
+      Provider.of<ShopFoodListProvider>(context, listen: false).getAllShopItems();
+    });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<ShopAcessoriesListProvider>(context, listen: false).getAllShopItems();
+      Provider.of<ShopMedicineListProvider>(context, listen: false).getAllShopItems();
     });
   }
   @override
@@ -66,8 +72,8 @@ class _ShopPageState extends State<ShopPage> {
         body: const TabBarView(
           children: [
             PetShopScreen(),
-            Text("122"),
-            Text("5fsd")
+            PetAcessoriesScreen(),
+            PetMedicineScreen()
           ]
         ),
         floatingActionButton: FloatingActionButton(
