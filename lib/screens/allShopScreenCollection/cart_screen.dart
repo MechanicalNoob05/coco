@@ -15,7 +15,6 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Cart"),
       ),
-      drawer: const NavDrawer(),
       body: provider.words.isEmpty ?
       Center(
         child: Column(
