@@ -1,9 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
 
-
+import 'package:coco/screens/miscpages/image_upload_screen.dart';
+import 'package:coco/services/upload_photo_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:coco/router/router.dart' as route;
-
+import 'package:image_picker/image_picker.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -15,9 +19,21 @@ class SignupPage extends StatefulWidget {
 final url = Uri.parse("http://localhost:3000/user/signup");
 
 class _SignupPageState extends State<SignupPage> {
-  final nameController =TextEditingController();
-  final emailController =TextEditingController();
-  final passwordController =TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  String? _path;
+  void selectImage() async{
+    try{
+      XFile img = await pickImage(ImageSource.gallery);
+      setState(() {
+        _path = img.path;
+      });
+    }catch(er){
+      const SnackBar(content: Text("No Image selected"));
+    }
+  }
 
   // _register() async {
   //   var data ={
@@ -39,13 +55,14 @@ class _SignupPageState extends State<SignupPage> {
   // }
 
   @override
-    void dispose() {
-      // Clean up the controller when the widget is disposed.
-      nameController.dispose();
-      emailController.dispose();
-      passwordController.dispose();
-      super.dispose();
-    }
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,11 +72,9 @@ class _SignupPageState extends State<SignupPage> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Colors.purple,
-                    Colors.black87
-              ])),
+              decoration: const BoxDecoration(
+                  gradient:
+                      LinearGradient(colors: [Colors.purple, Colors.black87])),
               child: const Padding(
                 padding: EdgeInsets.only(top: 60.0, left: 22),
                 child: Text(
@@ -79,7 +94,7 @@ class _SignupPageState extends State<SignupPage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
@@ -90,6 +105,29 @@ class _SignupPageState extends State<SignupPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       const Spacer(),
+                      Stack(
+                        children: [
+                          _path != null ?
+                          CircleAvatar(
+                              radius: 60,
+                              backgroundImage: FileImage(File(_path!)),
+                          ):
+                          const CircleAvatar(
+                            radius: 60,
+                              backgroundImage:
+                                  AssetImage("./assets/images/logo.png")),
+                          Positioned(
+                            bottom: -10,
+                            left: 80,
+                            child: IconButton(
+                                onPressed: () {
+                                  selectImage();
+
+                                },
+                                icon: const Icon(Icons.add_a_photo)),
+                          )
+                        ],
+                      ),
                       const TextField(
                         decoration: InputDecoration(
                             suffixIcon:
@@ -123,24 +161,19 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             )),
                       ),
-                      const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.check, color: Colors.grey),
-                            label: Text(
-                              "Confirm Password",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                      ),
                       const Spacer(),
                       FilledButton(
-                        style:
-                            FilledButton.styleFrom(minimumSize: const Size(400, 50)),
+                        style: FilledButton.styleFrom(
+                            minimumSize: const Size(400, 50)),
                         onPressed: () {
                           Navigator.popAndPushNamed(context, route.homePage);
                           //_register();
+                          // Navigator.of(context).push(
+                          //     MaterialPageRoute(
+                          //         builder: (context)=> ImageUpload()
+                          //     )
+                          // );
+                          upload(File(_path!));
                         },
                         child: const Text("Sign up"),
                       ),
@@ -158,8 +191,7 @@ class _SignupPageState extends State<SignupPage> {
                           "Login",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color:
-                              Theme.of(context).colorScheme.primary),
+                              color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                       const SizedBox(
