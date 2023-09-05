@@ -24,6 +24,7 @@ class _SignupPageState extends State<SignupPage> {
   final passwordController = TextEditingController();
 
   String? _path;
+
   void selectImage() async{
     try{
       XFile img = await pickImage(ImageSource.gallery);
@@ -165,15 +166,16 @@ class _SignupPageState extends State<SignupPage> {
                       FilledButton(
                         style: FilledButton.styleFrom(
                             minimumSize: const Size(400, 50)),
-                        onPressed: () {
-                          Navigator.popAndPushNamed(context, route.homePage);
+                        onPressed: () async{
+                          // Navigator.popAndPushNamed(context, route.homePage);
                           //_register();
                           // Navigator.of(context).push(
                           //     MaterialPageRoute(
                           //         builder: (context)=> ImageUpload()
                           //     )
                           // );
-                          upload(File(_path!));
+                          // upload(File(_path!));
+
                         },
                         child: const Text("Sign up"),
                       ),

@@ -1,7 +1,3 @@
-// ignore_for_file: void_checks
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -19,14 +15,14 @@ pickImage(ImageSource source) async {
   }
 }
 
-upload(File imageFile) async {
+Future<dynamic> upload (File imageFile) async {
   // open a bytestream
   var stream = http.ByteStream(DelegatingStream(imageFile.openRead()));
   // get file length
   var length = await imageFile.length();
 
   // string to uri
-  var uri = Uri.parse("http://localhost:3000/api/test");
+  var uri = Uri.parse("https://coco-backend-cr4j.onrender.com/api/test");
 
   // create multipart request
   var request = new http.MultipartRequest ("POST", uri);
@@ -39,11 +35,13 @@ upload(File imageFile) async {
 
   // send
   var response = await request.send();
-  print(response.statusCode);
-
+  if(response.statusCode == 200){
+    print("object");
+  }
+  Map<String, dynamic> result;
   // listen for response
   response.stream.transform(utf8.decoder).listen((value) {
-    Map<String, dynamic> result = jsonDecode(value);
-    return(result['downloadURL']);
+    result = jsonDecode(value);
+    print(result['downloadURL']);
   });
 }
