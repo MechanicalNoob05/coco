@@ -1,9 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:coco/screens/miscpages/image_upload_screen.dart';
 import 'package:coco/services/upload_photo_service.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:coco/router/router.dart' as route;
@@ -25,35 +22,37 @@ class _SignupPageState extends State<SignupPage> {
 
   String? _path;
 
-  void selectImage() async{
-    try{
+  void selectImage() async {
+    try {
       XFile img = await pickImage(ImageSource.gallery);
       setState(() {
         _path = img.path;
       });
-    }catch(er){
+    } catch (er) {
       const SnackBar(content: Text("No Image selected"));
     }
   }
 
-  // _register() async {
-  //   var data ={
-  //    'name':'wellhello',
-  //    'email':'cartel@gamil.com',
-  //    'password':'password',
-  //   };
-  //   var res = await Callapi().postData(data,'signup');
-  //   //:w
-  //   var body = json.decode(res.body);
-  //   if(body != null ){
-  //     Navigator.pushNamed(context, route.homePage);
-  //   }
-  //   else{
-  //   const AlertDialog(content:  Text("Please recheck your details...."),
-  //   title:  Text("Error"),
-  //   );
-  //   }
-  // }
+  _register() async {
+    var data = {
+      'name': nameController.text,
+      'email': emailController.text,
+      'password': passwordController.text,
+    };
+    var res = await Callapi().postSignupData(data, 'register');
+    //:w
+    var body = json.decode(res.body);
+    if (body['sucess']) {
+      var nav = Navigator.pushNamed(context, route.loginPage);
+      print(body['id']);
+      nav;
+    } else {
+      const AlertDialog(
+        content: Text("Please recheck your details...."),
+        title: Text("Error"),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -108,29 +107,28 @@ class _SignupPageState extends State<SignupPage> {
                       const Spacer(),
                       Stack(
                         children: [
-                          _path != null ?
-                          CircleAvatar(
-                              radius: 60,
-                              backgroundImage: FileImage(File(_path!)),
-                          ):
-                          const CircleAvatar(
-                            radius: 60,
-                              backgroundImage:
-                                  AssetImage("./assets/images/logo.png")),
+                          _path != null
+                              ? CircleAvatar(
+                                  radius: 60,
+                                  backgroundImage: FileImage(File(_path!)),
+                                )
+                              : const CircleAvatar(
+                                  radius: 60,
+                                  backgroundImage:
+                                      AssetImage("./assets/images/logo.png")),
                           Positioned(
                             bottom: -10,
                             left: 80,
                             child: IconButton(
                                 onPressed: () {
                                   selectImage();
-
                                 },
                                 icon: const Icon(Icons.add_a_photo)),
                           )
                         ],
                       ),
-                      const TextField(
-                        decoration: InputDecoration(
+                      TextField(
+                        decoration: const InputDecoration(
                             suffixIcon:
                                 Icon(Icons.account_circle, color: Colors.grey),
                             label: Text(
@@ -139,9 +137,11 @@ class _SignupPageState extends State<SignupPage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             )),
+                        controller: nameController,
                       ),
-                      const TextField(
-                        decoration: InputDecoration(
+                      TextField(
+                        controller: emailController,
+                        decoration: const InputDecoration(
                             suffixIcon: Icon(Icons.email, color: Colors.grey),
                             label: Text(
                               "Email",
@@ -150,9 +150,10 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                             )),
                       ),
-                      const TextField(
+                      TextField(
+                        controller: passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             suffixIcon:
                                 Icon(Icons.visibility_off, color: Colors.grey),
                             label: Text(
@@ -166,16 +167,15 @@ class _SignupPageState extends State<SignupPage> {
                       FilledButton(
                         style: FilledButton.styleFrom(
                             minimumSize: const Size(400, 50)),
-                        onPressed: () async{
+                        onPressed: () {
                           // Navigator.popAndPushNamed(context, route.homePage);
-                          //_register();
+                          _register();
                           // Navigator.of(context).push(
                           //     MaterialPageRoute(
                           //         builder: (context)=> ImageUpload()
                           //     )
                           // );
                           // upload(File(_path!));
-
                         },
                         child: const Text("Sign up"),
                       ),

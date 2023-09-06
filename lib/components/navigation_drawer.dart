@@ -110,7 +110,7 @@ class _NavDrawerState extends State<NavDrawer> {
             title: const Text("Logout"),
             onTap: () async{
               var sharedpref = await SharedPreferences.getInstance();
-              sharedpref.setBool("Login", false);
+              sharedpref.remove("token");
               Navigator.pushReplacementNamed(context, route.loginPage);
             },
           )

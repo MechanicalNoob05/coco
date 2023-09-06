@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:coco/router/router.dart' as route;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/upload_photo_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,14 +15,34 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  _login() async {
+    var data = {
+      'email': emailController.text,
+      'password': passwordController.text,
+    };
+    var res = await Callapi().postLoginData(data, 'login');
+    //:w
+    var body = json.decode(res.body);
+    if (body['sucess']) {
+      var nav = Navigator.pushNamed(context, route.homePage);
 
+      var sharedpref = await SharedPreferences.getInstance();
+      sharedpref.setString("token",body['token']);
+      nav;
+    } else {
+      const AlertDialog(
+        content: Text("Please recheck your details...."),
+        title: Text("Error"),
+      );
+    }
+  }
   @override
   void dispose() {
     // TODO: implement dispose
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
   @override
@@ -66,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Spacer(),
                       TextFormField(
-                        controller: _emailController,
+                        controller: emailController,
                         decoration: const InputDecoration(
                             suffixIcon: Icon(Icons.email, color: Colors.grey),
                             label: Text(
@@ -78,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextFormField(
                         obscureText: true,
-                        controller: _passwordController,
+                        controller: passwordController,
                         decoration: const InputDecoration(
                             suffixIcon:
                                 Icon(Icons.visibility_off, color: Colors.grey),
@@ -101,12 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                         style: FilledButton.styleFrom(
                             minimumSize: const Size(400, 50)),
                         onPressed: () async {
-                          var sharedpref = await SharedPreferences.getInstance();
-                          sharedpref.setBool("Login", true);
-                          Navigator.pushReplacementNamed(context,
-                            route.homePage,
-                            // arguments: {'name':"John"}
-                          );
+                          // Navigator.pushReplacementNamed(context,
+                          //   route.homePage,
+                          //   // arguments: {'name':"John"}
+                          // );
+                          _login();
                         },
                         child: const Text("Login"),
                       ),

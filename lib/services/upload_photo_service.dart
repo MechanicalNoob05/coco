@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
@@ -15,7 +17,7 @@ pickImage(ImageSource source) async {
   }
 }
 
-Future<dynamic> upload (File imageFile) async {
+upload (File imageFile) async {
   // open a bytestream
   var stream = http.ByteStream(DelegatingStream(imageFile.openRead()));
   // get file length
@@ -34,14 +36,40 @@ Future<dynamic> upload (File imageFile) async {
   request.files.add(multipartFile);
 
   // send
+
+  // listen for response
   var response = await request.send();
   if(response.statusCode == 200){
-    print("object");
+    response.stream.transform(utf8.decoder).listen((value) {
+      Map<String, dynamic> result;
+      result = jsonDecode(value);
+      // printer(result['downloadURL']);
+    });
   }
-  Map<String, dynamic> result;
-  // listen for response
-  response.stream.transform(utf8.decoder).listen((value) {
-    result = jsonDecode(value);
-    print(result['downloadURL']);
-  });
+  else{
+    print("issue");
+  }
+}
+class Callapi {
+  final String _url = "https://coco-backend-cr4j.onrender.com/api/user/";
+  postSignupData(data, apiUrl) async {
+    var fullUrl = _url + apiUrl;
+    return await http.post(
+      Uri.parse(fullUrl),
+      headers: _setHeader(),
+      body: jsonEncode(data),
+    );
+  }
+  postLoginData(data, apiUrl) async {
+    var fullUrl = _url + apiUrl;
+    return await http.post(
+      Uri.parse(fullUrl),
+      headers: _setHeader(),
+      body: jsonEncode(data),
+    );
+  }
+  _setHeader() => {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
 }

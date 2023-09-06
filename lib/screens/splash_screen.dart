@@ -18,10 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     void whereToGo() async{
       var sharedpref = await SharedPreferences.getInstance();
-      var isLoggedin = sharedpref.getBool("Login");
+      var isLoggedin = sharedpref.getString("token");
       Timer(Duration(seconds: 2),(){
         if(isLoggedin!=null){
-          if(isLoggedin){
+          if(isLoggedin != null ){
             Navigator.pushReplacementNamed(context, route.homePage );
           }else{
             Navigator.pushReplacementNamed(context, route.loginPage );
@@ -45,3 +45,9 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+// Center(
+// child: Image(
+// height: 200,
+// width: 200,
+// image: AssetImage("assets/images/logo.png"))
+// ),
