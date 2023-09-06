@@ -54,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           onTap: (){
                             Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (context)=>SingleProduct(name: displayList[index].name)
+                                    builder: (context)=>SingleProduct(productDetails: displayList[index])
                                 )
                             );
                           },

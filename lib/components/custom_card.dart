@@ -12,84 +12,87 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LikeProvider>(context);
-    return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context)=>SingleProduct(name: details.name)
-          )
-        );
-      },
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Ink.image(
-                  image: NetworkImage(
-                    details.url
-                  ),
-                  height: 240,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-              child: Row(
+    return Hero(
+      tag: "details${details.id}",
+      child: GestureDetector(
+        onTap: (){
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context)=>SingleProduct(productDetails: details)
+            )
+          );
+        },
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Column(
+            children: [
+              Stack(
                 children: [
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(details.name,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          softWrap: true,
-                        ),
-                        Text("Rs. ${details.price.toString()}",
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.grey
-                          ),
-                        ),
-                      ],
+                  Ink.image(
+                    image: NetworkImage(
+                      details.url
                     ),
-                  )
+                    height: 240,
+                    fit: BoxFit.cover,
+                  ),
                 ],
               ),
-            ),
-            ButtonBar(
-              alignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton(
-                  child: const Text('Add to cart'),
-                  onPressed: () {
-                    provider.toggleLike(details.name);
-                  },
+              Padding(
+                padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(details.name,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                          ),
+                          Text("Rs. ${details.price.toString()}",
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                TextButton(
-                  child: const Text('Buy Now!'),
-                  onPressed: () {
+              ),
+              ButtonBar(
+                alignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                    child: const Text('Add to cart'),
+                    onPressed: () {
+                      provider.toggleLike(details.name);
+                    },
+                  ),
+                  TextButton(
+                    child: const Text('Buy Now!'),
+                    onPressed: () {
 
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context)=> const PaymentGateway(),
-                      )
-                    );
-                  },
-                )
-              ],
-            )
-          ],
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context)=> const PaymentGateway(),
+                        )
+                      );
+                    },
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

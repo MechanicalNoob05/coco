@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     void whereToGo() async{
       var sharedpref = await SharedPreferences.getInstance();
       var isLoggedin = sharedpref.getString("token");
-      Timer(Duration(seconds: 2),(){
+      Timer(const Duration(seconds: 2),(){
         if(isLoggedin!=null){
           if(isLoggedin != null ){
             Navigator.pushReplacementNamed(context, route.homePage );
