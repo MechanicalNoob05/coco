@@ -53,42 +53,34 @@ class _NavDrawerState extends State<NavDrawer> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.store),
-            title: const Text("Shop"),
+            leading: const Icon(Icons.group),
+            title: const Text("Services"),
             onTap: () {
               Navigator.popAndPushNamed(context, route.shopPage);
             },
           ),
-          const ListTile(
-            leading: Icon(Icons.medical_services),
-            title: Text("Doctor"),
-          ),
-          const ListTile(
-            leading: Icon(Icons.group),
-            title: Text("Services"),
-          ),
-          ListTile(
-            leading: const Icon(Icons.downloading),
-            title: const Text("Samarth"),
-            onTap: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context)=>const SamarthTrialPage()
-                  )
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.downloading),
-            title: const Text("Ajit"),
-            onTap: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context)=>const AjitTrialPage()
-                  )
-              );
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.downloading),
+          //   title: const Text("Samarth"),
+          //   onTap: (){
+          //     Navigator.of(context).push(
+          //         MaterialPageRoute(
+          //             builder: (context)=>const SamarthTrialPage()
+          //         )
+          //     );
+          //   },
+          // ),
+          // ListTile(
+          //   leading: const Icon(Icons.downloading),
+          //   title: const Text("Ajit"),
+          //   onTap: (){
+          //     Navigator.of(context).push(
+          //         MaterialPageRoute(
+          //             builder: (context)=>const AjitTrialPage()
+          //         )
+          //     );
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text("Settings"),

@@ -15,14 +15,7 @@ class HomePage extends StatelessWidget {
         body: const Padding(
           padding: EdgeInsets.all(10.0),
           child: Center(child: Text("Home")),
-        ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () { },
-        icon: const Icon(Icons.qr_code),
-        label: const Text("Scan"),
-      ),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        )
     );
   }
 }
