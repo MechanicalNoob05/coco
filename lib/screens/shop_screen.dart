@@ -113,9 +113,9 @@ class _ShopPageState extends State<ShopPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Services"),
+        title: const Text("Services"),
       ),
-      drawer: NavDrawer(),
+      drawer: const NavDrawer(),
       body: Center(
         child: Column(
           children: [
@@ -124,7 +124,7 @@ class _ShopPageState extends State<ShopPage> {
              child: Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
-                 Text("Filter By",
+                 const Text("Filter By",
                    style: TextStyle(
                      fontWeight: FontWeight.bold,
                      fontSize: 16
